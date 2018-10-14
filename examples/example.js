@@ -1,7 +1,9 @@
 const binance = require('../node-binance-api.js');
+let APIKEY = 'zSehYr8Dg1RrDGfE95MbKpIZ3jDZDCkKHsRKevpH8IAqNHWDmszCgTA7x5MsW6kj';
+let APISECRET = 'WG1OjqRhlHGTlP6nliWKti52bvNXFeJGOIZgQueskYZKwyn9fJwHfLV7G1jLKdfq';
 binance.options({
-  'APIKEY':'<api key>',
-  'APISECRET':'<api secret>'
+  'APIKEY':APIKEY,
+  'APISECRET':APISECRET
 });
 
 // Get bid/ask prices
@@ -12,14 +14,14 @@ binance.options({
 // Getting latest price of a symbol
 binance.prices(function(error, ticker) {
 	console.log("prices()", ticker);
-	console.log("Price of BNB: ", ticker.BNBBTC);
+	console.log("Price of BNB: ", ticker.BTCUSDT);
 });
 
 // Getting list of current balances
 binance.balance(function(error, balances) {
 	console.log("balances()", balances);
-	if ( typeof balances.ETH !== "undefined" ) {
-		console.log("ETH balance: ", balances.ETH.available);
+	if ( typeof balances.BTC !== "undefined" ) {
+		console.log("ETH balance: ", balances.BTC.available);
 	}
 });
 
@@ -71,22 +73,22 @@ binance.balance(function(error, balances) {
 //binance.sell(symbol, quantity, 0, "MARKET");
 
 // Periods: 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
-binance.candlesticks("BNBBTC", "5m", function(error, ticks) {
-	console.log("candlesticks()", ticks);
-	let last_tick = ticks[ticks.length - 1];
-	let [time, open, high, low, close, volume, closeTime, assetVolume, trades, buyBaseVolume, buyAssetVolume, ignored] = last_tick;
-	console.log("BNBBTC last close: "+close);
-});
+// binance.candlesticks("BNBBTC", "5m", function(error, ticks) {
+// 	console.log("candlesticks()", ticks);
+// 	let last_tick = ticks[ticks.length - 1];
+// 	let [time, open, high, low, close, volume, closeTime, assetVolume, trades, buyBaseVolume, buyAssetVolume, ignored] = last_tick;
+// 	console.log("BNBBTC last close: "+close);
+// });
 
 
 // Maintain Market Depth Cache Locally via WebSocket
-binance.websockets.depthCache(["BNBBTC"], function(symbol, depth) {
-	let max = 10; // Show 10 closest orders only
-	let bids = binance.sortBids(depth.bids, max);
-	let asks = binance.sortAsks(depth.asks, max);
-	console.log(symbol+" depth cache update");
-	console.log("asks", asks);
-	console.log("bids", bids);
-	console.log("ask: "+binance.first(asks));
-	console.log("bid: "+binance.first(bids));
-});
+// binance.websockets.depthCache(["BNBBTC"], function(symbol, depth) {
+// 	let max = 10; // Show 10 closest orders only
+// 	let bids = binance.sortBids(depth.bids, max);
+// 	let asks = binance.sortAsks(depth.asks, max);
+// 	console.log(symbol+" depth cache update");
+// 	console.log("asks", asks);
+// 	console.log("bids", bids);
+// 	console.log("ask: "+binance.first(asks));
+// 	console.log("bid: "+binance.first(bids));
+// });
