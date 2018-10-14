@@ -199,6 +199,7 @@ let api = function Binance() {
         }, []).join('&');
         let signature = crypto.createHmac('sha256', Binance.options.APISECRET).update(query).digest('hex'); // set the HMAC hash header
 
+        console.log( url + '?' + query + '&signature=' + signature);
         let opt = reqObj(
             url + '?' + query + '&signature=' + signature,
             data,
