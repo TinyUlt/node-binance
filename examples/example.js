@@ -5,7 +5,7 @@ let APISECRET = 'WG1OjqRhlHGTlP6nliWKti52bvNXFeJGOIZgQueskYZKwyn9fJwHfLV7G1jLKdf
 //   'APIKEY':APIKEY,
 //   'APISECRET':APISECRET
 // });
-const binance = require('./node-binance-api')().options({
+const binance = require('../node-binance-api')().options({
     APIKEY: APIKEY,
     APISECRET: APISECRET,
     useServerTime: true, // If you get timestamp errors, synchronize to server time at startup
