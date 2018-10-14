@@ -18,16 +18,17 @@ const binance = require('../node-binance-api')().options({
 //});
 
 // Getting latest price of a symbol
-binance.prices(function(error, ticker) {
-	console.log("prices()", ticker);
-	console.log("Price of BNB: ", ticker.BTCUSDT);
-});
+// binance.prices(function(error, ticker) {
+// 	console.log("prices()", ticker);
+// 	console.log("Price of BNB: ", ticker.BTCUSDT);
+// });
 
 // Getting list of current balances
 binance.balance(function(error, balances) {
-	console.log("balances()", balances);
+	//console.log("balances()", balances);
 	if ( typeof balances.BTC !== "undefined" ) {
-		console.log("ETH balance: ", balances.BTC.available);
+        console.log("BTC balance: ", balances.BTC.available, balances.BTC.onOrder);
+        console.log("USDT balance: ", balances.USDT.available, balances.USDT.onOrder);
 	}
 });
 
@@ -71,7 +72,7 @@ binance.balance(function(error, balances) {
 //Placing a LIMIT order
 //binance.buy(symbol, quantity, price);
 //binance.buy("ETHBTC", 1, 0.0679);
-//binance.sell("ETHBTC", 1, 0.069);
+binance.sell('BTCUSDT', 0.01, 8000);
 
 //Placing a MARKET order
 //binance.buy(symbol, quantity, price, type);
