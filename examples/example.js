@@ -1,9 +1,15 @@
-const binance = require('../node-binance-api.js');
+//const binance = require('../node-binance-api.js');
 let APIKEY = 'zSehYr8Dg1RrDGfE95MbKpIZ3jDZDCkKHsRKevpH8IAqNHWDmszCgTA7x5MsW6kj';
 let APISECRET = 'WG1OjqRhlHGTlP6nliWKti52bvNXFeJGOIZgQueskYZKwyn9fJwHfLV7G1jLKdfq';
-binance.options({
-  'APIKEY':APIKEY,
-  'APISECRET':APISECRET
+// binance.options({
+//   'APIKEY':APIKEY,
+//   'APISECRET':APISECRET
+// });
+const binance = require('./node-binance-api')().options({
+    APIKEY: APIKEY,
+    APISECRET: APISECRET,
+    useServerTime: true, // If you get timestamp errors, synchronize to server time at startup
+    test: true // If you want to use sandbox mode where orders are simulated
 });
 
 // Get bid/ask prices
