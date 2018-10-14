@@ -72,7 +72,7 @@ binance.balance(function(error, balances) {
 //Placing a LIMIT order
 //binance.buy(symbol, quantity, price);
 //binance.buy("ETHBTC", 1, 0.0679);
-binance.sell('BTCUSDT', 0.01, 8000);
+binance.buy('BTCUSDT', 0.01, 8000);
 
 //Placing a MARKET order
 //binance.buy(symbol, quantity, price, type);
