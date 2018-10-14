@@ -72,12 +72,21 @@ binance.balance(function(error, balances) {
 //Placing a LIMIT order
 //binance.buy(symbol, quantity, price);
 //binance.buy("ETHBTC", 1, 0.0679);
-binance.buy('BTCUSDTa', 0.01, 8000);
+//binance.buy('BTCUSDT', 0.01, 8000);
+
+let quantity = 0.01, price = 7000;
+binance.sell("BTCUSDT", quantity, price, {type:'LIMIT'}, (error, response) => {
+    if ( error ) return console.error(error);
+    console.log("Limit Buy response", response);
+    console.log("order id: " + response.orderId);
+});
+
 
 //Placing a MARKET order
 //binance.buy(symbol, quantity, price, type);
 //binance.buy("ETHBTC", 1, 0, "MARKET")
 //binance.sell(symbol, quantity, 0, "MARKET");
+
 
 // Periods: 1m,3m,5m,15m,30m,1h,2h,4h,6h,8h,12h,1d,3d,1w,1M
 // binance.candlesticks("BNBBTC", "5m", function(error, ticks) {
